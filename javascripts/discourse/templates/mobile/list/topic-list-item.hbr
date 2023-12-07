@@ -1,0 +1,116 @@
+<div class="topic-list-item-wrapper">
+  {{~raw-plugin-outlet name="topic-list-before-columns"}}
+
+  {{#if bulkSelectEnabled}}
+    <div class="bulk-select topic-list-data">
+      <label for="bulk-select-{{topic.id}}">
+        <input
+          type="checkbox"
+          class="bulk-select"
+          id="bulk-select-{{topic.id}}"
+        />
+      </label>
+    </div>
+  {{else}}
+    <a
+      class="avator topic-creator"
+      href="{{topic.firstPostUrl}}"
+      data-user-card="{{topic.creator.username}}"
+    >{{avatar topic.creator imageSize="large"}}</a>
+  {{/if}}
+
+  {{!
+  The `~` syntax strip spaces between the elements, making it produce
+  `<a class=topic-post-badges>Some text</a><span class=topic-post-badges>`,
+  with no space between them.
+  This causes the topic-post-badge to be considered the same word as "text"
+  at the end of the link, preventing it from line wrapping onto its own line.
+}}
+  <div class="main-link clearfix topic-list-data" colspan="1">
+    {{~raw-plugin-outlet name="topic-list-before-link"}}
+    <span class="link-top-line">
+      {{~raw-plugin-outlet name="topic-list-before-status"}}
+      {{~raw "topic-status" topic=topic}}
+      {{~topic-link topic class="raw-link raw-topic-link"}}
+      {{~#if topic.featured_link}}
+        {{~topic-featured-link topic}}
+      {{~/if}}
+      {{~raw-plugin-outlet name="topic-list-after-title"}}
+      {{~raw
+        "list/unread-indicator"
+        includeUnreadIndicator=includeUnreadIndicator
+        topicId=topic.id
+        unreadClass=unreadClass
+      ~}}
+      {{~#if showTopicPostBadges}}
+        {{~raw
+          "topic-post-badges"
+          unreadPosts=topic.unread_posts
+          unseen=topic.unseen
+          url=topic.lastUnreadUrl
+          newDotText=newDotText
+        }}
+      {{~/if}}
+    </span>
+    <div class="link-bottom-line">
+      {{#unless hideCategory}}
+        {{#unless topic.isPinnedUncategorized}}
+          {{~raw-plugin-outlet name="topic-list-before-category"}}
+          {{category-link topic.category}}
+        {{/unless}}
+      {{/unless}}
+      {{discourse-tags topic mode="list" tagsForUser=tagsForUser}}
+      {{#if participantGroups}}
+        {{raw "list/participant-groups" groups=participantGroups}}
+      {{/if}}
+      {{raw
+        "list/action-list"
+        topic=topic
+        postNumbers=topic.liked_post_numbers
+        className="likes"
+        icon="heart"
+      }}
+    </div>
+
+    {{~raw-plugin-outlet name="topic-list-main-link-bottom"}}
+  </div>
+
+  {{~raw-plugin-outlet name="topic-list-after-main-link"}}
+
+  {{raw "list/topic-excerpt" topic=topic}}
+  <div class="topic-list-item-bottom-infos">
+    <div class="topic-list-data-container">
+      <div class="num posts topic-list-data">
+        {{d-icon "far-comment"}}
+        {{number topic.replyCount}}
+      </div>
+
+      <div class="num likes topic-list-data">
+        {{d-icon "far-heart"}}
+        {{number topic.like_count}}
+      </div>
+
+      <div class="num views {{topic.viewsHeat}} topic-list-data">
+        {{d-icon "far-eye"}}
+        {{number topic.views numberKey="views_long"}}
+      </div>
+
+    </div>
+
+    <div class="posters-container">
+      <div class="posters topic-list-data">
+        {{#if topic.replyCount}}
+          <a href="{{topic.lastPostUrl}}" data-user-card="{{topic.lastPosterUser.username}}">{{avatar topic.lastPosterUser imageSize="tiny"}}</a>
+        {{/if}}
+      </div>
+    </div>
+
+    {{raw
+      "list/activity-column"
+      topic=topic
+      class="num topic-list-data"
+      tagName="div"
+    }}
+  </div>
+
+</div>

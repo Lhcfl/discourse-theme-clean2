@@ -1,0 +1,10 @@
+{
+  "about_url": null,
+  "license_url": null,
+  "assets": {},
+  "name": "clean2",
+  "color_schemes": {},
+  "modifiers": {
+    "serialize_topic_excerpts": true
+  }
+}

@@ -1,0 +1,74 @@
+/**
+ * Topic list & item
+ */
+
+body.navigation-topics {
+  tbody {
+    border: none;
+  }
+}
+
+.topic-list-body tr {
+  width: 100%;
+}
+
+@include breakpoint(medium, $sidebar: true) {
+  .topic-list {
+    .views {
+      display: unset;
+    }
+  }
+}
+
+.topic-list-item.visited .topic-list-data,
+.latest-topic-list-item.visited,
+.category-topic-link.visited {
+  a.title:not(.badge-notification) {
+    color: var(--primary-high);
+  }
+  .badge-category {
+    color: var(--primary-high);
+  }
+  .discourse-tag,
+  .discourse-tag:visited {
+    color: var(--primary-high);
+  }
+}
+
+.topic-list .topic-list-item-wrapper {
+  max-width: calc(100vw - 20px);
+  display: flex;
+  flex-wrap: wrap;
+  a.avator {
+    padding: 8px 10px 8px 5px;
+  }
+  .topic-excerpt {
+    width: 100%;
+    padding: 0 10px;
+  }
+  .topic-list-item-bottom-infos {
+    width: 100%;
+    display: inline-flex;
+    .topic-list-data-container {
+      width: fit-content;
+      display: inline-flex;
+      flex: 0 0 auto;
+      & > * {
+        width: 60px;
+        text-align: start;
+      }
+    }
+    .posters-container {
+      flex: 1 0 auto;
+    }
+    .num.activity {
+      width: 80px;
+      flex: 0 0 auto;
+      text-align: end;
+    }
+  }
+}
+
+.navigation-container .category-breadcrumb {
+  display: none;
+}

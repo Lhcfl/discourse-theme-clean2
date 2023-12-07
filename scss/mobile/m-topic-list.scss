@@ -1,0 +1,17 @@
+.mobile-view {
+  .topic-list .topic-list-item-wrapper {
+    .topic-list-item-bottom-infos {
+      .topic-list-data-container {
+        margin-left: 10px;
+        & > * {
+          width: fit-content;
+          min-width: 45px;
+        }
+        flex: 1 0 auto;
+      }
+      .posters-container {
+        flex: 0 0 auto;
+      }
+    }
+  }
+}
