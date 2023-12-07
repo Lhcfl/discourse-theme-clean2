@@ -42,8 +42,11 @@ body.navigation-topics {
   a.avator {
     padding: 8px 10px 8px 5px;
   }
+  .main-link {
+    width: calc(100% - 80px);
+  }
   .topic-excerpt {
-    width: 100%;
+    width: 95%;
     padding: 0 10px;
   }
   .topic-list-item-bottom-infos {
@@ -72,4 +75,12 @@ body.navigation-topics {
 
 .navigation-container .category-breadcrumb {
   display: none;
+}
+
+.topic-list-item,
+.latest-topic-list-item {
+  &:hover {
+    cursor: pointer;
+    background: rgba(var(--primary-rgb), 0.025);
+  }
 }
