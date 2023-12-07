@@ -1,0 +1,103 @@
+/* 全局 按钮 Global button */
+
+:root {
+  --d-button-border-radius: 6px;
+}
+
+$btn-default-border-color: var(--primary-300);
+$btn-default-border-hover-color: var(--tertiary-700);
+$btn-default-color: var(--primary-high);
+$btn-default-hover-color: var(--tertiary-800);
+
+@mixin hover_and_active($bordercolor, $bgcolor, $color) {
+  &:not([disabled]) {
+    &.btn-active,
+    &:active,
+    &:focus,
+    .discourse-no-touch &.btn-hover,
+    .discourse-no-touch &:hover {
+      background-image: unset;
+      border: 1px solid $bordercolor;
+      color: $color;
+      background: $bgcolor;
+      .d-icon {
+        color: $color;
+      }
+    }
+    &:active,
+    &.btn-active {
+      scale: 0.95;
+    }
+    &.focus {
+      outline: 1px solid;
+    }
+  }
+}
+@mixin button_normal($bordercolor, $bgcolor, $color) {
+  border: 1px solid $bordercolor;
+  color: $color;
+  background: $bgcolor;
+  transition: all 0.3s;
+  .d-icon {
+    color: $color;
+    transition: all 0.3s;
+  }
+  &[disabled] {
+    opacity: 0.4;
+  }
+}
+
+.btn {
+  background: transparent;
+  color: var(--primary-high);
+  border-radius: var(--d-button-border-radius);
+
+  .docker-manager &,
+  &.btn-default,
+  &.btn-large,
+  &.btn-small,
+  &.btn-primary {
+    border: 1px solid var(--btn-default-border);
+    box-shadow: var(--btn-box-shadow);
+  }
+
+  &.btn-default {
+    @include button_normal(
+      $btn-default-border-color,
+      var(--secondary),
+      $btn-default-color
+    );
+    @include hover_and_active(
+      $btn-default-border-hover-color,
+      var(--secondary),
+      $btn-default-hover-color
+    );
+  }
+
+  &.btn-primary {
+    @include button_normal(transparent, var(--tertiary), var(--secondary));
+    @include hover_and_active(
+      transparent,
+      var(--tertiary-hover),
+      var(--secondary)
+    );
+  }
+
+  &.btn-danger {
+    @include button_normal(var(--danger), var(--secondary), var(--danger));
+    @include hover_and_active(
+      var(--danger-hover),
+      var(--danger-low),
+      var(--danger-hover)
+    );
+  }
+
+  &.btn-flat {
+    @include button_normal(transparent, transparent, $btn-default-color);
+    @include hover_and_active(
+      transparent,
+      transparent,
+      $btn-default-hover-color
+    );
+  }
+}

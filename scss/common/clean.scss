@@ -16,128 +16,13 @@
     0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
 }
 
+@import "common/parts/p-buttons";
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, segoe ui, Roboto,
     helvetica neue, Arial, noto sans, sans-serif;
 }
 
-/* 全局 按钮 Global button */
-
-.docker-manager .btn,
-.btn-default,
-.btn-large,
-.btn-small,
-.btn-primary {
-  border: 1px solid var(--btn-default-border);
-  box-shadow: var(--btn-box-shadow);
-}
-
-.btn {
-  background: var(--secondary);
-  color: var(--primary-high);
-}
-.discourse-no-touch .btn:active {
-  scale: 0.95;
-}
-
-.discourse-no-touch .btn:hover,
-.discourse-no-touch .btn.btn-hover,
-.btn:focus {
-  background: var(--secondary);
-  color: var(--btn-default-hover);
-  border-color: var(--tertiary-900);
-}
-
-.discourse-no-touch .btn:hover .d-icon,
-.discourse-no-touch .btn.btn-hover .d-icon,
-.btn:focus .d-icon {
-  color: var(--btn-default-hover);
-}
-
-.btn:active,
-.btn.btn-active {
-  background-color: transparent;
-  background-image: unset;
-  border: 1px solid var(--primary-600);
-}
-
-.btn[disabled] {
-  border: 1px solid var(--primary-500);
-}
-
-.btn[disabled]:hover,
-.btn.disabled:hover {
-  background: transparent;
-}
-
-.btn-primary {
-  border: 1px solid transparent;
-  color: var(--secondary);
-  background: var(--tertiary);
-}
-.btn-primary.btn-active,
-.btn-primary:active,
-.btn-primary:focus,
-.discourse-no-touch .btn-primary.btn-hover,
-.discourse-no-touch .btn-primary:hover {
-  border: 1px solid transparent;
-  color: var(--secondary);
-  background: var(--tertiary-hover);
-}
-.btn-primary.btn-active .d-icon,
-.btn-primary:active .d-icon,
-.btn-primary:focus .d-icon,
-.discourse-no-touch .btn-primary.btn-hover .d-icon,
-.discourse-no-touch .btn-primary:hover .d-icon {
-  color: var(--secondary);
-}
-
-.btn-danger {
-  border: 1px solid var(--danger);
-  color: var(--danger);
-}
-.btn-danger .d-icon {
-  color: var(--danger);
-}
-.btn-danger.btn-active,
-.btn-danger:active,
-.btn-danger:focus,
-.discourse-no-touch .btn-danger.btn-hover,
-.discourse-no-touch .btn-danger:hover {
-  border: 1px solid var(--danger);
-  color: var(--secondary);
-  background: var(--danger);
-}
-.btn-danger.btn-active .d-icon,
-.btn-danger:active .d-icon,
-.btn-danger:focus .d-icon,
-.discourse-no-touch .btn-danger.btn-hover .d-icon,
-.discourse-no-touch .btn-danger:hover .d-icon {
-  color: var(--secondary);
-}
-
-.btn-flat,
-.btn-flat .d-icon {
-  transition: all 0.25s;
-  color: var(--primary-600);
-}
-.btn-flat.btn-text {
-  border: none;
-  box-shadow: none;
-}
-.btn-flat.btn-text:focus,
-.discourse-no-touch .btn-flat.btn-text:hover,
-.discourse-no-touch .btn-flat.btn-text.btn-hover {
-  background-color: var(--tertiary-100);
-  color: var(--tertiary-hover);
-}
-
-.btn-flat.btn-text:not([disabled]):active,
-.btn-flat.btn-text:not([disabled]).btn-active {
-  background-color: var(--tertiary-100);
-  background-image: unset;
-  color: var(--tertiary-hover);
-}
 
 .chat-drawer-header__right-actions .btn {
   background: transparent;

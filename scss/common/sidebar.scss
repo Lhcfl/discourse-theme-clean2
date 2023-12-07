@@ -48,7 +48,7 @@
       .d-icon {
         transition: all 0.3s;
       }
-      &:hover {
+      .discourse-no-touch &:hover {
         background-color: transparent;
         .d-icon {
           color: var(--primary);
