@@ -66,8 +66,9 @@ body.navigation-topics {
       flex: 1 0 auto;
     }
     .num.activity {
-      width: 80px;
+      width: fit-content;
       flex: 0 0 auto;
+      margin-left: 10px;
       text-align: end;
     }
   }
