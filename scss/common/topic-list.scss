@@ -39,15 +39,33 @@ body.navigation-topics {
   max-width: calc(100vw - 20px);
   display: flex;
   flex-wrap: wrap;
-  a.avator {
-    padding: 8px 10px 8px 5px;
+
+  .topic-main-link {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 0 50%;
+    width: 100%;
+    a.avator {
+      padding: 8px 10px 8px 5px;
+    }
+    .main-link {
+      flex: 1 0 auto;
+    }
+    .topic-excerpt {
+      width: 100%;
+      flex: 1 0 100%;
+      padding: 0 10px;
+    }
   }
-  .main-link {
-    width: calc(100% - 80px);
-  }
-  .topic-excerpt {
-    width: 95%;
-    padding: 0 10px;
+
+  .topic-thumbnail {
+    flex: 0 0 auto;
+    max-height: 150px;
+    overflow: hidden;
+    padding-top: 5px;
+    img {
+      width: 120px;
+    }
   }
   .topic-list-item-bottom-infos {
     width: 100%;
