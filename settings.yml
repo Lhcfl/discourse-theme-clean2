@@ -1,3 +1,16 @@
 svg_icons:
   type: list
   default: "far-comment-dots"
+  description:
+    en: "<b>DO NOT CHANG</b>. The svg icons used by this theme."
+    zh_CN: "<b>请勿更改</b> 主题中用到的svg icon"
+rightbar_site_desctiption:
+  default: "A discourse forum"
+  description:
+    en: "For non-logged-in users, the site description appears in the rightbar. Support HTML."
+    zh_CN: "对于未登录用户，右边栏中显示的站点描述。支持HTML。"
+rightbar_site_background_url:
+  default: ""
+  description:
+    en: "For non-logged-in users, the url of site card backgound image in the rightbar."
+    zh_CN: "对于未登录用户，右边栏中站点卡片的背景图像url"

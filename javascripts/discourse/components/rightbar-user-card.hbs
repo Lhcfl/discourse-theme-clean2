@@ -32,11 +32,13 @@
           </div>
 
           {{#if user.name}}
-            <div class="user-username">
-              <a href="{{user.summary_url}}">
-                @{{user.username}}
-              </a>
-            </div>
+            {{#unless user.isSiteUser}}
+              <div class="user-username">
+                <a href="{{user.summary_url}}">
+                  @{{user.username}}
+                </a>
+              </div>
+            {{/unless}}
           {{/if}}
 
           <div class="user-title">
@@ -46,8 +48,11 @@
         </div>
 
         <div class="user-bio">
+
           {{htmlSafe user.bio_cooked}}
+
         </div>
+
       </div>
     </div>
   {{/if}}
