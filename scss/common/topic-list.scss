@@ -65,6 +65,9 @@ body.navigation-topics {
     padding-top: 5px;
     img {
       width: 120px;
+      .mobile-view & {
+        width: 90px;
+      }
     }
   }
   .topic-list-item-bottom-infos {
