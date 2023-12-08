@@ -1,0 +1,111 @@
+:root {
+  --d-rightbar-width: 280px;
+}
+
+#main-outlet-wrapper {
+  grid-template-areas: "sidebar content rightbar";
+  grid-template-columns: var(--d-sidebar-width) minmax(0, 1fr) 0;
+  gap: 0 2em;
+  body.has-sidebar-page & {
+    grid-template-columns: var(--d-sidebar-width) minmax(0, 1fr) 0;
+  }
+}
+
+body.navigation-topics,
+body.navigation-category,
+body.tags-page {
+  #main-outlet-wrapper {
+    grid-template-columns: 0 minmax(0, 1fr) var(--d-rightbar-width);
+    gap: 0 2em;
+  }
+  &.has-sidebar-page #main-outlet-wrapper {
+    grid-template-columns: var(--d-sidebar-width) minmax(0, 1fr) var(
+        --d-rightbar-width
+      );
+  }
+  @include breakpoint(extra-large) {
+    &.has-sidebar-page #main-outlet-wrapper {
+      grid-template-columns: var(--d-sidebar-width) minmax(0, 1fr) 0;
+      .rightbar-wrapper {
+        display: none;
+      }
+    }
+  }
+  @include breakpoint(medium) {
+    &:not(.has-sidebar-page) #main-outlet-wrapper {
+      grid-template-columns: 0 minmax(0, 1fr) 0;
+      .rightbar-wrapper {
+        display: none;
+      }
+    }
+  }
+}
+
+.rightbar-wrapper {
+  grid-area: rightbar;
+  position: sticky;
+  top: var(--header-offset);
+  background: transparent;
+  --1dvh: 1vh;
+  height: calc(
+    var(--composer-vh, var(--1dvh)) * 100 - var(--header-offset, 0px)
+  );
+  align-self: start;
+  overflow-y: auto;
+
+  .rightbar-user-card {
+    overflow: hidden;
+    margin-top: 20px;
+    background-color: var(--primary-very-low);
+    border-radius: var(--ant-radius);
+    .user-banner {
+      width: 100%;
+      height: 150px;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      &.no-banner {
+        background: transparent;
+        overflow: hidden;
+        img {
+          width: 100%;
+          border-radius: 0;
+          filter: blur(2em);
+        }
+      }
+    }
+    .user-card-content {
+      padding: 10px;
+      position: relative;
+
+      .user-avatar {
+        width: 100%;
+        margin-top: -84px;
+        text-align: center;
+        .avatar {
+          width: 128px;
+          height: 128px;
+        }
+      }
+      .user-meta {
+        .user-display-name a {
+          color: var(--primary);
+          font-size: var(--font-up-2);
+          font-weight: bold;
+        }
+        .user-username a {
+          color: var(--primary-medium);
+        }
+        .user-title {
+          color: var(--primary-high);
+        }
+
+        text-align: center;
+      }
+      .user-bio {
+        padding: 5px 20px 10px 20px;
+        max-height: 200px;
+      }
+    }
+  }
+}

@@ -3,28 +3,24 @@ import { withPluginApi } from "discourse/lib/plugin-api";
 const pluginId = "clean2";
 
 function makeTopicClickable(api) {
-  api.modifyClass(
-    "component:topic-list-item",
-    {
-      unhandledRowClick(e, topic) {
-        if (e.target.tagName.toLowerCase() === "img") {
-          return;
-        }
-        if (e.target.tagName.toLowerCase() === "a") {
-          return;
-        }
-        this.navigateToTopic(
-          topic,
-          topic.linked_post_number
-            ? topic.urlForPostNumber(topic.linked_post_number)
-            : topic.get("lastUnreadUrl")
-        );
-      },
+  api.modifyClass("component:topic-list-item", {
+    pluginId,
+
+    unhandledRowClick(e, topic) {
+      if (e.target.tagName.toLowerCase() === "img") {
+        return;
+      }
+      if (e.target.tagName.toLowerCase() === "a") {
+        return;
+      }
+      this.navigateToTopic(
+        topic,
+        topic.linked_post_number
+          ? topic.urlForPostNumber(topic.linked_post_number)
+          : topic.get("lastUnreadUrl")
+      );
     },
-    {
-      pluginId,
-    }
-  );
+  });
 }
 
 function addClassWhenScroll(api) {
