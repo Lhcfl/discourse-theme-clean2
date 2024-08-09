@@ -80,7 +80,7 @@ export default class RightbarSiteCard extends Component {
             </div>
           </div>
           <div class="user-bio">
-            {{this.descriptionCooked}}
+            {{htmlSafe this.descriptionCooked}}
           </div>
           <div class="site-meta">
             {{#if this.about}}
