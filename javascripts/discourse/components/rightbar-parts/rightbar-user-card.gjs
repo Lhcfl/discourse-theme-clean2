@@ -84,7 +84,7 @@ export default class RightbarUserCard extends Component {
             </div>
           </div>
           <div class="user-bio">
-            {{this.user.bio_excerpt}}
+            {{htmlSafe this.user.bio_excerpt}}
           </div>
           <div class="user-action">
             <DButton
