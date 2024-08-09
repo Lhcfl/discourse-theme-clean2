@@ -1,5 +1,6 @@
 /* Navigation */
 
+.list-controls .nav-pills,
 .nav-pills {
   box-shadow: 0 3px 0 var(--primary-50);
   li {
@@ -13,12 +14,12 @@
       }
       &.active {
         background-color: transparent;
-        box-shadow: 0 3px 0 var(--d-nav-color--active);
+        box-shadow: 0 4px 0 -1px var(--d-nav-color--active);
       }
       &:not(.active):hover {
         color: var(--primary);
         background-color: transparent;
-        box-shadow: 0 3px 0 var(--d-nav-color--active);
+        box-shadow: 0 4px 0 -1px var(--d-nav-color--active);
       }
     }
   }

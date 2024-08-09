@@ -1,5 +1,11 @@
 .mobile-view {
   .topic-list .topic-list-item-wrapper {
+    .topic-main-link .topic-list-data {
+      padding: 10px 0 7px 0;
+      .link-bottom-line {
+        margin-top: 2px;
+      }
+    }
     .topic-list-item-bottom-infos {
       .topic-list-data-container {
         margin-left: 10px;
