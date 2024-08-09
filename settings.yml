@@ -1,6 +1,6 @@
 svg_icons:
   type: list
-  default: "far-comment-dots"
+  default: "far-comment-dots|comments|layer-group"
   description:
     en: "<b>DO NOT CHANG</b>. The svg icons used by this theme."
     zh_CN: "<b>请勿更改</b> 主题中用到的svg icon"

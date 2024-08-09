@@ -1,16 +1,28 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
+import Rightbar from "../components/rightbar";
 
 const pluginId = "clean2";
 
 function makeTopicClickable(api) {
+  /** @param {HTMLElement} elem  */
+  function isTopicClick(elem) {
+    if (!elem) {
+      return false;
+    }
+    if (elem.classList.contains("topic-list-item-wrapper")) {
+      return true;
+    }
+    const tagName = elem.tagName.toLowerCase();
+    if (["img", "a", "body", "input"].includes(tagName)) {
+      return false;
+    }
+    return isTopicClick(elem.parentNode);
+  }
   api.modifyClass("component:topic-list-item", {
     pluginId,
 
     unhandledRowClick(e, topic) {
-      if (e.target.tagName.toLowerCase() === "img") {
-        return;
-      }
-      if (e.target.tagName.toLowerCase() === "a") {
+      if (!isTopicClick(e.target)) {
         return;
       }
       this.navigateToTopic(
@@ -58,10 +70,15 @@ function addClassWhenScroll(api) {
 export default {
   name: "discourse-navigation-controls",
 
-  initialize() {
-    withPluginApi("0.8.13", (api) => {
+  initialize(container) {
+    withPluginApi("1.6.0", (api) => {
       addClassWhenScroll(api);
       makeTopicClickable(api);
+      const site = container.owner.lookup("service:site");
+
+      if (site.desktopView) {
+        api.renderInOutlet("before-main-outlet", Rightbar);
+      }
     });
   },
 };

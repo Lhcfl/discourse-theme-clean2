@@ -46,15 +46,21 @@ body.navigation-topics {
     flex: 1 0 50%;
     width: 100%;
     a.avator {
-      padding: 8px 10px 8px 5px;
+      padding: 14px 5px 8px 5px;
     }
     .main-link {
       flex: 1 0 50%;
     }
     .topic-excerpt {
-      width: 100%;
+      width: 100px; // why can't 100%??
       flex: 1 0 60%;
       padding: 0 10px;
+    }
+    .bulk-select {
+      padding: 15px 10px 10px 10px;
+      input {
+        scale: 200%;
+      }
     }
   }
 
@@ -74,6 +80,7 @@ body.navigation-topics {
     width: 100%;
     display: inline-flex;
     .topic-list-data-container {
+      color: var(--primary-high);
       width: fit-content;
       display: inline-flex;
       flex: 0 0 auto;
@@ -91,6 +98,7 @@ body.navigation-topics {
       flex: 0 0 auto;
       margin-left: 10px;
       text-align: end;
+      color: var(--primary-high);
     }
   }
 }

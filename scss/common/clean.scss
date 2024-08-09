@@ -17,6 +17,7 @@
 }
 
 @import "common/parts/p-buttons";
+@import "common/parts/d-menu";
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, segoe ui, Roboto,
@@ -210,80 +211,7 @@ input:hover,
   border-radius: var(--d-input-border-radius);
 }
 
-/* Navigation */
-
-.nav-pills {
-  box-shadow: 0 3px 0 var(--primary-50);
-}
-.nav-pills > li a,
-.nav-pills > li button {
-  transition: all 0.3s;
-}
-.nav-pills > li a.active,
-.nav-pills > li button.active {
-  color: var(--quaternary);
-  background-color: transparent;
-  box-shadow: 0 3px 0 var(--quaternary);
-}
-.nav-pills > li > a:not(.active):hover,
-.nav-pills > li button:not(.active):hover {
-  color: var(--primary);
-  background-color: transparent;
-  box-shadow: 0 3px 0 var(--quaternary);
-}
-.admin-controls,
-.admin-controls nav {
-  background-color: transparent;
-}
-.admin-controls nav:before,
-.admin-controls nav:after {
-  display: none;
-}
-
-.admin-controls .nav-pills > li a.active {
-  background: transparent;
-}
-.admin-controls .nav-pills > li > a:not(.active):hover,
-.admin-controls .nav-pills > li button:not(.active):hover {
-  color: var(--quaternary);
-  background-color: transparent;
-  box-shadow: none;
-}
-
-.new-user-wrapper .user-navigation .nav-pills li a {
-  transition: all 0.3s;
-}
-
-.nav-pills > li button {
-  border: 1px solid var(--btn-default-border);
-  box-shadow: var(--btn-box-shadow);
-  border-radius: var(--d-button-border-radius);
-  margin-left: 10px;
-}
-.admin-controls .nav-pills > li button:not(.active):hover,
-.nav-pills > li button:hover {
-  color: var(--tertiary-800);
-}
-
-.admin-controls .admin-actions {
-  width: 100%;
-  justify-content: right;
-}
-
-@media (max-width: 500px) {
-  .desktop-view #navigation-bar {
-    flex-wrap: nowrap;
-    width: 100%;
-    order: -1;
-  }
-  .desktop-view #navigation-bar.nav-pills li {
-    width: 100%;
-  }
-  .desktop-view #navigation-bar.nav-pills li a {
-    width: 100%;
-    justify-content: center;
-  }
-}
+@import "common/parts/d-nav";
 
 /* content */
 .boxed.admin-content {

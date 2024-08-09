@@ -1,3 +1,5 @@
 en:
   theme_metadata:
     description: ""
+  rightbar-user-card:
+    edit-profile: "Edit profile"

@@ -1,59 +1,103 @@
-/** Sidebar **/
+$primary: #222222 !default;
+$secondary: #ffffff !default;
+$tertiary: #0088cc !default;
+$quaternary: #e45735 !default;
+$header_background: #ffffff !default;
+$header_primary: #333333 !default;
+$highlight: #ffff4d !default;
+$selected: #d1f0ff !default;
+$hover: #f2f2f2 !default;
+$danger: #c80001 !default;
+$success: #009900 !default;
+$love: #fa6c8d !default;
+$public_image_path: "https://sea1.discourse-cdn.com/dev/images";
+@import "common/foundation/variables";
+@import "common/foundation/mixins";
+// Theme: Discourse Experiments
+// Target: common scss
+// Last Edited: 2024-07-10 16:42:47 UTC
+@import "common/foundation/mixins";
+// Theme: Discourse Experiments
+// Target: desktop scss
+// Last Edited: 2024-08-07 22:17:47 UTC
+:root {
+  --d-sidebar-row-horizontal-padding: 1rem;
+  --d-sidebar-section-link-prefix-margin-right: 0.75em;
+}
+.sidebar-wrapper
+  .sidebar-container:not(:has(.discourse-docs-sidebar-panel)):not(
+    :has(.admin-panel)
+  ) {
+  .sidebar-section-wrapper {
+    // margin-bottom: 1rem;
+    padding-block: 0.5rem;
+    border-bottom: 1px solid var(--secondary-very-high);
+    &:first-child {
+      padding-top: 0;
+    }
+    &[data-section-name="user-threads"] {
+      padding-bottom: 0;
+    }
 
-.sidebar-sections {
-  @mixin sidebar-section-style {
-    color: var(--primary);
-    font-size: var(--font-up-1);
-    border-radius: var(--d-sidebar-border-radius);
-    padding: 20px;
+    // .sidebar-section-content:not(#sidebar-section-content-user-threads) {
+    //   margin-left: 0.5rem;
+    // }
   }
-  @mixin sidebar-section-icon-style {
-    color: var(--primary-high);
-    margin-right: 10px;
-  }
-  .sidebar-section-link-wrapper {
-    margin: 5px;
 
-    .sidebar-more-section-links-details-summary {
-      @include sidebar-section-style;
-      .d-icon {
-        @include sidebar-section-icon-style;
-      }
-    }
-    .sidebar-section-link,
-    .sidebar-section-link.active {
-      @include sidebar-section-style;
-      .sidebar-section-link-prefix.icon,
-      .sidebar-section-link-prefix.span,
-      .sidebar-section-link-prefix.image {
-        @include sidebar-section-icon-style;
-      }
-    }
+  .sidebar-section-header-wrapper:hover {
+    background: none;
+  }
 
-    .sidebar-section-link.active {
-      background: var(--tertiary-very-low);
+  .sidebar-sections {
+    padding: 1.5rem 1rem 1rem;
+
+    > .sidebar-section-wrapper:last-child {
+      border-bottom: 0;
     }
   }
-  .sidebar-section-wrapper .sidebar-section-header-wrapper {
-    @include sidebar-section-style;
-    .sidebar-section-header-text {
-      font-weight: bolder;
-    }
+
+  .sidebar-section-header {
+    font-size: var(--font-down-2-rem);
+    color: var(--primary-medium);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .sidebar-section-header-collapsable {
     .sidebar-section-header-caret {
-      margin-right: 10px;
-      margin-left: 5px;
-      color: var(--primary);
-    }
-    .sidebar-section-header-button {
+      margin-right: 1em;
       .d-icon {
-        transition: all 0.3s;
+        font-size: var(--font-0);
       }
-      .discourse-no-touch &:hover {
-        background-color: transparent;
-        .d-icon {
-          color: var(--primary);
+    }
+  }
+
+  .sidebar-section-link-wrapper {
+    .sidebar-section-link {
+      border-radius: var(--d-border-radius);
+      padding-block: 0.6em;
+      height: auto;
+      &.active {
+        background-color: var(--tertiary-very-low);
+        font-weight: bold;
+        .sidebar-section-link-hover:hover .sidebar-section-hover-button {
+          background-color: var(--tertiary-very-low);
         }
       }
     }
+    &[data-list-item-name="all-categories"],
+    &[data-list-item-name="all-tags"],
+    &[data-list-item-name="configure-default-navigation-menu-tags"] {
+      font-size: var(--font-down-1-rem);
+    }
+  }
+
+  .sidebar-section-content {
+    padding-bottom: 0;
+  }
+
+  .sidebar-section-link-content-text {
+    color: var(--primary-high) !important;
   }
 }

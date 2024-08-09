@@ -1,0 +1,32 @@
+{{~raw-plugin-outlet name="topic-list-header-before"~}}
+{{~plugin-outlet name="topic-list-header-before"~}}
+{{#if bulkSelectEnabled}}
+  <th class="bulk-select topic-list-data">
+    {{#if canBulkSelect}}
+      {{raw "flat-button" class="bulk-select" icon="tasks" title="topics.bulk.toggle"}}
+    {{/if}}
+  </th>
+{{/if}}
+
+{{~#if canBulkSelect}}
+  <th data-sort-order='default' class='{{view.className}} topic-list-data' scope="col" {{#if view.ariaSort}}aria-sort='{{view.ariaSort}}'{{/if}}>
+    {{~#if toggleInTitle}}
+      {{raw "flat-button" class="bulk-select" icon="tasks" title="topics.bulk.toggle"}}
+    {{/if ~}}
+    {{~#if bulkSelectEnabled}}
+      <span class='bulk-select-topics'>
+        {{~#if canDoBulkActions}}
+          {{raw "topic-bulk-select-dropdown" bulkSelectHelper=bulkSelectHelper}}
+        {{/if ~}}
+        <button class='btn btn-default bulk-select-all'>{{i18n "topics.bulk.select_all"}}</button>
+        <button class='btn btn-default bulk-clear-all'>{{i18n "topics.bulk.clear_all"}}</button>
+      </span>
+    {{/if ~}}
+  </th>
+{{/if ~}}
+
+{{raw-plugin-outlet name="topic-list-header-after-main-link"}}
+{{plugin-outlet name="topic-list-header-after-main-link"}}
+
+{{~raw-plugin-outlet name="topic-list-header-after"~}}
+{{~plugin-outlet name="topic-list-header-after"~}}

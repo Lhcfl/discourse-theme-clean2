@@ -1,103 +1,193 @@
 /* 全局 按钮 Global button */
-
 :root {
-  --d-button-border-radius: 6px;
+  --d-border-radius: 6px;
 }
 
-$btn-default-border-color: var(--primary-300);
-$btn-default-border-hover-color: var(--tertiary-700);
-$btn-default-color: var(--primary-high);
-$btn-default-hover-color: var(--tertiary-800);
-
-@mixin hover_and_active($bordercolor, $bgcolor, $color) {
-  &:not([disabled]) {
-    &.btn-active,
-    &:active,
-    &:focus,
-    .discourse-no-touch &.btn-hover,
-    .discourse-no-touch &:hover {
-      background-image: unset;
-      border: 1px solid $bordercolor;
-      color: $color;
-      background: $bgcolor;
-      .d-icon {
-        color: $color;
-      }
-    }
-    &:active,
-    &.btn-active {
-      // scale: 0.95;
-    }
-    &.focus {
-      outline: 1px solid;
-    }
-  }
-}
-@mixin button_normal($bordercolor, $bgcolor, $color) {
-  border: 1px solid $bordercolor;
-  color: $color;
-  background: $bgcolor;
+@mixin transition-300 {
   transition: all 0.3s;
-  .d-icon {
-    color: $color;
-    transition: all 0.3s;
+}
+
+/* 全局 按钮 Global button */
+.docker-manager .btn,
+.btn-default,
+.btn-large,
+.btn-small,
+.btn-primary {
+  border: 1px solid var(--btn-default-border);
+  box-shadow: var(--btn-box-shadow);
+}
+
+@mixin make-btn-border-and-d-icon(
+  $border-color: 0,
+  $bg-color: 0,
+  $text-color: 0
+) {
+  @if $border-color != 0 {
+    border: 1px solid $border-color;
+    box-shadow: var(--btn-box-shadow);
   }
-  &[disabled] {
-    opacity: 0.4;
+  @if $bg-color != 0 {
+    background: $bg-color;
+  }
+  @if $text-color != 0 {
+    color: $text-color;
+  }
+  .d-icon {
+    @if $text-color != 0 {
+      color: $text-color;
+    }
+  }
+}
+
+@mixin make-btn(
+  $v-border-color: 0,
+  $no-shadow: 0,
+  $v-bg-color: 0,
+  $v-text-color: 0,
+  $v-border-color-hover: 0,
+  $v-bg-color-hover: 0,
+  $v-text-color-hover: 0,
+  $v-border-color-active: 0
+) {
+  @include transition-300();
+  .d-icon {
+    @include transition-300();
+  }
+
+  @if $v-border-color != 0 {
+    border: 1px solid $v-border-color;
+    @if $no-shadow == 0 {
+      box-shadow: var(--btn-box-shadow);
+    }
+  }
+  @if $v-text-color != 0 {
+    color: $v-text-color;
+  }
+  @if $v-bg-color != 0 {
+    background-color: $v-bg-color;
+  }
+
+  .discourse-no-touch &:hover,
+  .discourse-no-touch &.btn-hover,
+  &:focus {
+    @include make-btn-border-and-d-icon(
+      $v-border-color-hover,
+      $v-bg-color-hover,
+      $v-text-color-hover
+    );
+  }
+  &:active,
+  &.btn-active {
+    @include make-btn-border-and-d-icon(
+      $v-border-color-active,
+      $v-bg-color,
+      $v-text-color
+    );
+  }
+  .disabled,
+  [disabled] {
+    opacity: 0.6;
+    @include make-btn-border-and-d-icon(
+      $v-border-color,
+      $v-bg-color,
+      $v-text-color
+    );
+    &:hover,
+    &:active,
+    &.btn-hover,
+    &.btn-active {
+      background: transparent;
+      @include make-btn-border-and-d-icon(
+        $v-border-color,
+        $v-bg-color,
+        $v-text-color
+      );
+    }
   }
 }
 
 .btn {
-  background: transparent;
-  color: var(--primary-high);
-  border-radius: var(--d-button-border-radius);
+  @include make-btn(
+    $v-border-color: 0,
+    $no-shadow: 0,
+    $v-bg-color: var(--secondary),
+    $v-text-color: var(--primary-high),
+    $v-border-color-hover: var(--tertiary-900),
+    $v-bg-color-hover: var(--secondary),
+    $v-text-color-hover: var(--btn-default-hover),
+    $v-border-color-active: var(--primary-600)
+  );
+  .discourse-no-touch &:active {
+    scale: 0.95;
+  }
+}
+.btn-flat {
+  @include make-btn($no-shadow: 1, $v-border-color: transparent);
+  box-shadow: none;
+}
+.btn-transparent {
+  @include make-btn(
+    $v-text-color: var(--primary-high),
+    $v-text-color-hover: var(--primary)
+  );
+}
+.btn-primary {
+  @include make-btn(
+    $v-border-color: transparent,
+    $v-bg-color: var(--tertiary),
+    $v-text-color: var(--secondary),
+    $v-border-color-hover: transparent,
+    $v-bg-color-hover: var(--tertiary-hover),
+    $v-text-color-hover: var(--secondary),
+    $v-border-color-active: transparent
+  );
+}
+.btn-danger {
+  @include make-btn(
+    $v-border-color: var(--danger),
+    $v-bg-color: var(--secondary),
+    $v-text-color: var(--danger),
+    $v-border-color-hover: var(--danger-hover),
+    $v-bg-color-hover: var(--danger-low),
+    $v-text-color-hover: var(--danger-hover),
+    $v-border-color-active: var(--danger-hover)
+  );
+}
+.btn-success {
+  @include make-btn(
+    $v-border-color: var(--success),
+    $v-bg-color: var(--secondary),
+    $v-text-color: var(--success),
+    $v-border-color-hover: var(--success-hover),
+    $v-bg-color-hover: var(--success-low),
+    $v-text-color-hover: var(--success-hover),
+    $v-border-color-active: var(--success-hover)
+  );
+}
 
-  .docker-manager &,
-  &.btn-default,
-  &.btn-large,
-  &.btn-small,
-  &.btn-primary {
-    border: 1px solid var(--btn-default-border);
-    box-shadow: var(--btn-box-shadow);
+nav.post-controls .actions button {
+  @include make-btn(
+    $v-bg-color: transparent,
+    $v-bg-color-hover: var(--tertiary-300),
+    $v-text-color-hover: var(--tertiary)
+  );
+  border: none;
+
+  .d-icon {
+    color: var(--primary-700);
   }
 
-  &.btn-default {
-    @include button_normal(
-      $btn-default-border-color,
-      var(--secondary),
-      $btn-default-color
-    );
-    @include hover_and_active(
-      $btn-default-border-hover-color,
-      var(--secondary),
-      $btn-default-hover-color
-    );
+  .discourse-no-touch &:hover,
+  .discourse-no-touch &.btn-hover,
+  &:focus {
+    border: none;
   }
 
-  &.btn-primary {
-    @include button_normal(transparent, var(--tertiary), var(--secondary));
-    @include hover_and_active(
-      transparent,
-      var(--tertiary-hover),
-      var(--secondary)
-    );
-  }
-
-  &.btn-danger {
-    @include button_normal(var(--danger), var(--secondary), var(--danger));
-    @include hover_and_active(
-      var(--danger-hover),
-      var(--danger-low),
-      var(--danger-hover)
-    );
-  }
-
-  &.btn-flat {
-    @include button_normal(transparent, transparent, $btn-default-color);
-    @include hover_and_active(
-      transparent,
-      transparent,
-      $btn-default-hover-color
+  &.delete {
+    @include make-btn(
+      $v-bg-color: transparent,
+      $v-bg-color-hover: var(--danger-low),
+      $v-text-color-hover: var(--danger-hover)
     );
   }
 }

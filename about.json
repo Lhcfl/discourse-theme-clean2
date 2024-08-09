@@ -1,10 +1,20 @@
 {
-  "about_url": null,
+  "name": "Clean 2",
+  "component": false,
   "license_url": null,
-  "assets": {},
-  "name": "clean2",
-  "color_schemes": {},
+  "about_url": null,
+  "authors": "Lhc_fl",
+  "theme_version": null,
+  "minimum_discourse_version": "3.0.0",
+  "maximum_discourse_version": null,
+  "components": [
+    "https://github.com/Lhcfl/discourse-clean-user-page.git"
+  ],
+  "assets": {
+  },
+  "color_schemes": {
+  },
   "modifiers": {
-    "serialize_topic_excerpts": true
-  }
+  },
+  "learn_more": "https://meta.discourse.org/t/beginners-guide-to-using-discourse-themes/91966"
 }
