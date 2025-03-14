@@ -1,5 +1,8 @@
 en:
   theme_metadata:
-    description: ""
+    description: "TODO"
+    settings:
+      example_setting: "A description of a setting."
   rightbar-user-card:
     edit-profile: "Edit profile"
+    
