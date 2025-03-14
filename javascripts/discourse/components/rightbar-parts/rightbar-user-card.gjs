@@ -6,8 +6,8 @@ import { htmlSafe } from "@ember/template";
 import DButton from "discourse/components/d-button";
 import { renderAvatar } from "discourse/helpers/user-avatar";
 import { ajax } from "discourse/lib/ajax";
+import { getURLWithCDN } from "discourse/lib/get-url";
 import DiscourseURL from "discourse/lib/url";
-import { getURLWithCDN } from "discourse-common/lib/get-url";
 
 let userCache = undefined;
 

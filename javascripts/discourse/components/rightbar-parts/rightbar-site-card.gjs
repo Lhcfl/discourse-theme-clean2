@@ -3,10 +3,10 @@ import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 import { service } from "@ember/service";
 import { htmlSafe } from "@ember/template";
+import dIcon from "discourse/helpers/d-icon";
 import { renderAvatar } from "discourse/helpers/user-avatar";
 import { ajax } from "discourse/lib/ajax";
 import DiscourseURL from "discourse/lib/url";
-import dIcon from "discourse-common/helpers/d-icon";
 
 let aboutCache = null;
 

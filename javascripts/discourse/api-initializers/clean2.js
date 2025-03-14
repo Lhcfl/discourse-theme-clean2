@@ -1,42 +1,8 @@
-import { withPluginApi } from "discourse/lib/plugin-api";
+import { apiInitializer } from "discourse/lib/api";
 import Rightbar from "../components/rightbar";
 
-const pluginId = "clean2";
-
-function makeTopicClickable(api) {
-  /** @param {HTMLElement} elem  */
-  function isTopicClick(elem) {
-    if (!elem) {
-      return false;
-    }
-    if (elem.classList.contains("topic-list-item-wrapper")) {
-      return true;
-    }
-    const tagName = elem.tagName.toLowerCase();
-    if (["img", "a", "body", "input"].includes(tagName)) {
-      return false;
-    }
-    return isTopicClick(elem.parentNode);
-  }
-  api.modifyClass("component:topic-list-item", {
-    pluginId,
-
-    unhandledRowClick(e, topic) {
-      if (!isTopicClick(e.target)) {
-        return;
-      }
-      this.navigateToTopic(
-        topic,
-        topic.linked_post_number
-          ? topic.urlForPostNumber(topic.linked_post_number)
-          : topic.get("lastUnreadUrl")
-      );
-    },
-  });
-}
-
 function addClassWhenScroll(api) {
-  const site = api.container.lookup("site:main");
+  const site = api.container.lookup("service:site");
   if (!site.mobileView) {
     return;
   }
@@ -49,7 +15,7 @@ function addClassWhenScroll(api) {
   const add_class_on_scroll = () => body.classList.add(hiddenNavClass);
   const remove_class_on_scroll = () => body.classList.remove(hiddenNavClass);
 
-  window.addEventListener("scroll", function () {
+  window.addEventListener("scroll", () => {
     scrollTop = window.scrollY;
     if (
       lastScrollTop < scrollTop &&
@@ -67,18 +33,11 @@ function addClassWhenScroll(api) {
   });
 }
 
-export default {
-  name: "discourse-navigation-controls",
+export default apiInitializer((api) => {
+  addClassWhenScroll(api);
+  const site = api.container.lookup("service:site");
 
-  initialize(container) {
-    withPluginApi("1.6.0", (api) => {
-      addClassWhenScroll(api);
-      makeTopicClickable(api);
-      const site = container.owner.lookup("service:site");
-
-      if (site.desktopView) {
-        api.renderInOutlet("before-main-outlet", Rightbar);
-      }
-    });
-  },
-};
+  if (site.desktopView) {
+    api.renderInOutlet("before-main-outlet", Rightbar);
+  }
+});
